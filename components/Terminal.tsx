@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { SystemStatus } from '@/types';
 
 interface TerminalProps {
@@ -8,14 +9,24 @@ interface TerminalProps {
 }
 
 export default function Terminal({ children, status }: TerminalProps) {
+  const [key, setKey] = useState(0);
   const isCritical = status.level === 'critical' || !status.containment;
   
+  useEffect(() => {
+    if (status.level === 'normal' && status.temperature === 25) {
+      setKey(prev => prev + 1);
+    }
+  }, [status]);
+
   return (
-    <div className={`
-      min-h-screen bg-black text-green-500 p-4 font-mono
-      ${isCritical ? 'animate-glitch' : ''}
-      relative
-    `}>
+    <div 
+      key={key}
+      className={`
+        min-h-screen bg-black text-green-500 p-4 font-mono
+        ${isCritical ? 'animate-glitch' : ''}
+        relative
+      `}
+    >
       {/* Glitch overlay */}
       {isCritical && (
         <div className="absolute inset-0 pointer-events-none">
