@@ -34,19 +34,19 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
         bg-white text-black rounded-lg shadow-lg overflow-hidden
         ${email.urgent ? 'border-l-4 border-red-500' : ''}
       `}>
-        <div className="bg-green-500 text-white p-3">
-          <h2 className="text-xl font-semibold">New Message</h2>
+        <div className="bg-green-500 text-white p-2 md:p-3">
+          <h2 className="text-base md:text-xl font-semibold">New Message</h2>
         </div>
         
-        <div className="border-b border-gray-200 p-3">
-          <div className="space-y-2">
-            <div className="flex items-start gap-4">
-              <span className="w-20 text-gray-600">To:</span>
-              <span className="text-black">{email.to}</span>
+        <div className="border-b border-gray-200 p-2 md:p-3">
+          <div className="space-y-1 md:space-y-2 text-sm md:text-base">
+            <div className="flex items-start gap-2 md:gap-4">
+              <span className="w-12 md:w-20 text-gray-600">To:</span>
+              <span className="text-black flex-1 break-all">{email.to}</span>
             </div>
-            <div className="flex items-start gap-4">
-              <span className="w-20 text-gray-600">Subject:</span>
-              <span className="text-black">{email.subject}</span>
+            <div className="flex items-start gap-2 md:gap-4">
+              <span className="w-12 md:w-20 text-gray-600">Subject:</span>
+              <span className="text-black flex-1 break-words">{email.subject}</span>
             </div>
           </div>
         </div>
@@ -74,12 +74,12 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
       <div className={`
         ${isGameOver ? 'bg-red-900' : 'bg-[#0F6CBD]'} 
         ${isAWSFailure ? 'bg-red-700 animate-pulse' : ''}
-        text-white p-3
+        text-white p-2 md:p-3
       `}>
-        <h2 className="text-xl font-semibold flex items-center">
-          {isAWSFailure && <span className="animate-pulse mr-2">⚠️</span>}
+        <h2 className="text-sm md:text-xl font-semibold flex items-center leading-tight">
+          {isAWSFailure && <span className="animate-pulse mr-1 md:mr-2">⚠️</span>}
           {email.subject || 'No Subject'}
-          {isAWSFailure && <span className="animate-pulse ml-2">⚠️</span>}
+          {isAWSFailure && <span className="animate-pulse ml-1 md:ml-2">⚠️</span>}
         </h2>
       </div>
       
@@ -131,7 +131,8 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
             key={choice.id}
             onClick={() => handleChoice(choice.id)}
             className={`
-              w-full p-2 md:p-3 text-left rounded shadow-sm text-sm md:text-base
+              w-full p-2 text-left rounded shadow-sm text-xs md:text-base
+              leading-tight md:leading-normal
               ${isAWSFailure 
                 ? 'bg-red-600 text-white border-red-400 hover:bg-red-700' 
                 : isGameOver
