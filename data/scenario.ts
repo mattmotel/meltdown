@@ -94,6 +94,11 @@ Casey`,
           type: "temperature",
           value: 45
         }
+      },
+      {
+        id: "try_security",
+        text: "Contact facility security",
+        nextEmailId: "security_response"
       }
     ]
   },
@@ -122,6 +127,11 @@ HR Consultant`,
           type: "temperature",
           value: 50
         }
+      },
+      {
+        id: "try_accounting",
+        text: "Contact accounting about payment",
+        nextEmailId: "accounting_response"
       }
     ]
   },
@@ -145,6 +155,11 @@ Albert Sampson / HR Consultant`,
         id: "urgent_hours",
         text: "Write urgent warning",
         nextEmailId: "mere_hours_warning"
+      },
+      {
+        id: "contact_aws",
+        text: "Try contacting AWS support directly",
+        nextEmailId: "aws_support_response"
       }
     ]
   },
@@ -337,6 +352,66 @@ IT Support`,
         id: "back_to_hr_again",
         text: "Return to HR process",
         nextEmailId: "casey_urgent_reply"
+      }
+    ]
+  },
+
+  "security_response": {
+    id: "security_response",
+    from: "security@atomindustries.com",
+    to: "c.morgan@contractor.atomindustries.com",
+    subject: "Re: URGENT: Security Access Request",
+    timestamp: "12:00 PM",
+    content: `Dear Casey,
+
+All employee access and credential matters must be handled through HR. Please contact Jessica Bronson in HR to process your request.
+
+Security Team`,
+    choices: [
+      {
+        id: "back_to_hr_security",
+        text: "Return to HR as directed",
+        nextEmailId: "records_not_found"
+      }
+    ]
+  },
+
+  "accounting_response": {
+    id: "accounting_response",
+    from: "accounts@atomindustries.com",
+    to: "c.morgan@contractor.atomindustries.com",
+    subject: "Re: Urgent Payment Request",
+    timestamp: "1:45 PM",
+    content: `Hi Casey,
+
+All expense approvals must be processed through HR first. Please work with Jessica Bronson to submit the proper documentation.
+
+Accounting Department`,
+    choices: [
+      {
+        id: "back_to_hr_accounting",
+        text: "Contact HR about expense approval",
+        nextEmailId: "albert_migration_update"
+      }
+    ]
+  },
+
+  "aws_support_response": {
+    id: "aws_support_response",
+    from: "no-reply@aws.amazon.com",
+    to: "c.morgan@contractor.atomindustries.com",
+    subject: "Re: Account Access Request",
+    timestamp: "2:45 PM",
+    content: `Hello,
+
+For security reasons, we can only process account access requests through your organization's designated HR representative.
+
+AWS Support Team`,
+    choices: [
+      {
+        id: "back_to_hr_aws",
+        text: "Return to HR process",
+        nextEmailId: "mere_hours_warning"
       }
     ]
   }
