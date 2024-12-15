@@ -4,9 +4,10 @@ import ChoiceList from './ChoiceList';
 interface EmailProps {
   email: EmailType;
   onChoice: (choiceId: string) => void;
+  onGameOver?: () => void;
 }
 
-export default function Email({ email, onChoice }: EmailProps) {
+export default function Email({ email, onChoice, onGameOver }: EmailProps) {
   if (!email) {
     return <div className="text-red-500">Email not found</div>;
   }
@@ -16,6 +17,15 @@ export default function Email({ email, onChoice }: EmailProps) {
                        email.content.includes("AWS");
   const isComposing = (email.from.includes("c.morgan") || email.from.includes("Casey")) && 
                      !email.content.includes("could not be delivered");
+
+  const handleChoice = (choiceId: string) => {
+    if (choiceId === 'restart' && onGameOver) {
+      onGameOver();
+      setTimeout(() => onChoice(choiceId), 3000);
+    } else {
+      onChoice(choiceId);
+    }
+  };
 
   if (isComposing) {
     // Outlook composing email style
@@ -119,7 +129,7 @@ export default function Email({ email, onChoice }: EmailProps) {
         {(email.choices || []).map((choice) => (
           <button
             key={choice.id}
-            onClick={() => onChoice(choice.id)}
+            onClick={() => handleChoice(choice.id)}
             className={`
               w-full p-3 text-left rounded shadow-sm
               ${isAWSFailure 

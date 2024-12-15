@@ -16,7 +16,23 @@ export default {
         blink: {
           '0%, 100%': { opacity: '0' },
           '50%': { opacity: '1' }
+        },
+        flash: {
+          '0%': { backgroundColor: 'black' },
+          '100%': { backgroundColor: 'white' }
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '20%': { opacity: '0.1' },
+          '40%': { opacity: '0.3' },
+          '60%': { opacity: '0.5' },
+          '80%': { opacity: '0.8' },
+          '100%': { opacity: '1' }
         }
+      },
+      animation: {
+        flash: 'flash 3s forwards',
+        fadeIn: 'fadeIn 5s ease-in forwards'
       }
     },
   },
