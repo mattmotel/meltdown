@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './CallingWindow.module.css';
 
 export interface CallingWindowProps {
@@ -8,18 +8,19 @@ export interface CallingWindowProps {
   ringCount?: number;
 }
 
-const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose, status, ringCount }) => {
-  const [callDuration, setCallDuration] = useState(0);
-  const [callStatus, setCallStatus] = useState('ringing'); // ringing, calling, voicemail, ended
+const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', ringCount: initialRingCount = 0 }: CallingWindowProps) => {
+  const [callDuration, setCallDuration] = useState<number>(0);
+  const [callStatus, setCallStatus] = useState<'ringing' | 'calling' | 'voicemail'>(initialStatus);
+  const [localRingCount, setLocalRingCount] = useState<number>(initialRingCount);
 
   useEffect(() => {
     const ringInterval = setInterval(() => {
       if (callStatus === 'ringing') {
-        setRingCount(prev => prev + 1);
+        setLocalRingCount((prev: number) => prev + 1);
       }
     }, 3000);
 
-    if (ringCount >= 4 && callStatus === 'ringing') {
+    if (localRingCount >= 4 && callStatus === 'ringing') {
       setCallStatus('calling');
     }
 
@@ -31,7 +32,7 @@ const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose, status, 
 
     const durationTimer = setInterval(() => {
       if (callStatus === 'calling') {
-        setCallDuration(prev => prev + 1);
+        setCallDuration((prev: number) => prev + 1);
       }
     }, 1000);
 
@@ -40,7 +41,7 @@ const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose, status, 
       clearTimeout(voicemailTimeout);
       clearInterval(durationTimer);
     };
-  }, [callStatus, ringCount]);
+  }, [callStatus, localRingCount]);
 
   const formatDuration = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
