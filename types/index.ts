@@ -11,8 +11,9 @@ export interface Choice {
   id: string;
   text: string;
   nextEmailId: string;
+  action?: 'SHOW_CALL_WINDOW';
   consequence?: {
-    type: 'temperature' | 'pressure' | 'containment';
+    type: string;
     value: number | boolean;
   };
 }
@@ -20,10 +21,10 @@ export interface Choice {
 export interface Email {
   id: string;
   from: string;
+  to: string;
   subject: string;
-  content: string;
   timestamp: string;
+  content: string;
   urgent?: boolean;
   choices: Choice[];
-  systemEffect?: Partial<SystemStatus>;
 } 

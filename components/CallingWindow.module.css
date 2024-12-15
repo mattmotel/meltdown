@@ -1,0 +1,158 @@
+.callingWindow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to bottom, #2c3e50, #34495e);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 360px;
+  padding: 32px;
+  z-index: 1000;
+  color: white;
+}
+
+.callingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.userAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: #4a69bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.ringWaves {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wave {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: ripple 3s infinite;
+}
+
+.wave:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.calleeName {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.status {
+  text-align: center;
+  position: relative;
+  min-height: 60px;
+}
+
+.callingDots span {
+  animation: blink 1.4s infinite;
+  font-size: 32px;
+  margin: 0 2px;
+}
+
+.callingDots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.callingDots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.duration {
+  font-size: 20px;
+  color: #ecf0f1;
+}
+
+.controls {
+  margin-top: 24px;
+}
+
+.button {
+  padding: 16px 32px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+
+.endCall {
+  background: #e74c3c;
+  color: white;
+}
+
+.endCall:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.voicemailIcon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+} 

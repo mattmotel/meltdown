@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Terminal from '@/components/Terminal';
 import SystemStatus from '@/components/SystemStatus';
 import Email from '@/components/Email';
+import EmergencyCallButton from '@/components/EmergencyCallButton';
 import { scenario } from '@/data/scenario';
 import { AlertLevel, SystemStatus as SystemStatusType } from '@/types';
 
@@ -44,12 +45,15 @@ export default function Home() {
   console.log('Current email:', currentEmailId);
 
   return (
-    <Terminal status={systemStatus}>
-      <SystemStatus status={systemStatus} />
-      <Email 
-        email={scenario[currentEmailId]} 
-        onChoice={handleChoice}
-      />
-    </Terminal>
+    <main className="relative min-h-screen">
+      <Terminal status={systemStatus}>
+        <SystemStatus status={systemStatus} />
+        <Email 
+          email={scenario[currentEmailId]} 
+          onChoice={handleChoice}
+        />
+      </Terminal>
+      <EmergencyCallButton />
+    </main>
   );
 }
