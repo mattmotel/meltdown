@@ -19,6 +19,9 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
                      !email.content.includes("could not be delivered");
 
   const handleChoice = (choiceId: string) => {
+    // Scroll to top smoothly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (choiceId === 'restart' && onGameOver) {
       onGameOver();
       setTimeout(() => onChoice(choiceId), 3000);
@@ -56,7 +59,7 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
           <span className="inline-block w-0.5 h-5 bg-black ml-1 animate-[blink_1s_infinite]" />
         </div>
 
-        <div className="p-4 bg-gray-50 border-t border-gray-200">
+        <div className="text-sm lg:text-base p-4 bg-gray-50 border-t border-gray-200">
           <ChoiceList choices={email.choices} onChoice={onChoice} />
         </div>
       </div>
