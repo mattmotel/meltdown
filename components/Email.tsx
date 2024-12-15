@@ -1,5 +1,6 @@
 import { Email as EmailType } from '@/types';
 import ChoiceList from './ChoiceList';
+import TypewriterText from './TypewriterText';
 
 export interface EmailProps {
   email: EmailType;
@@ -55,11 +56,7 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
         </div>
         
         <div className="text-sm p-4 min-h-[200px] bg-gray-50 whitespace-pre-wrap">
-          {email.content}
-          <span 
-            className="inline-block w-[2px] h-4 bg-black ml-1" 
-            style={{ animation: 'cursor-blink 1s step-end infinite' }}
-          />
+          <TypewriterText content={email.content} />
         </div>
 
         <div className="text-sm lg:text-base p-4 bg-gray-50 border-t border-gray-200">
