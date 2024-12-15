@@ -14,7 +14,8 @@ export default function Email({ email, onChoice }: EmailProps) {
   const isGameOver = email.id === 'system_failure' || email.id === 'meltdown_ending';
   const isAWSFailure = email.content.includes("could not be delivered") && 
                        email.content.includes("AWS");
-  const isComposing = email.from.includes("c.morgan") || email.from.includes("Casey");
+  const isComposing = (email.from.includes("c.morgan") || email.from.includes("Casey")) && 
+                     !email.content.includes("could not be delivered");
 
   if (isComposing) {
     // Outlook composing email style
@@ -23,7 +24,7 @@ export default function Email({ email, onChoice }: EmailProps) {
         bg-white text-black rounded-lg shadow-lg overflow-hidden
         ${email.urgent ? 'border-l-4 border-red-500' : ''}
       `}>
-        <div className="bg-[#0F6CBD] text-white p-3">
+        <div className="bg-green-500 text-white p-3">
           <h2 className="text-xl font-semibold">New Message</h2>
         </div>
         
@@ -40,7 +41,7 @@ export default function Email({ email, onChoice }: EmailProps) {
           </div>
         </div>
         
-        <div className="p-4 min-h-[200px] whitespace-pre-wrap relative">
+        <div className="text-sm p-4 min-h-[200px] bg-gray-50 whitespace-pre-wrap relative">
           {email.content}
           <span className="inline-block w-0.5 h-5 bg-black ml-1 animate-[blink_1s_infinite]" />
         </div>
@@ -123,7 +124,7 @@ export default function Email({ email, onChoice }: EmailProps) {
               w-full p-3 text-left rounded shadow-sm
               ${isGameOver 
                 ? 'bg-red-900 text-white border-red-500 hover:bg-red-800' 
-                : 'bg-white border border-gray-300 hover:bg-gray-100'}
+              : 'bg-white text-black border border-gray-300 hover:bg-gray-300'}
               ${isAWSFailure 
                 ? 'bg-red-600 text-white border-red-400 hover:bg-red-700' 
                 : ''}
