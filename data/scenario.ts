@@ -275,18 +275,18 @@ Albert Sampson / HR Consultant`,
 
   "aws_failure_notice": {
     id: "aws_failure_notice",
-    from: "c.morgan@contractor.atomindustries.com",
+    from: "no-reply@aws.amazon.com",
     to: "HR@atomindustries.com",
     subject: "Re: URGENT: AWS Shutdown and Potential Nuclear Meltdown Imminent",
     timestamp: "4:45 PM",
-    content: `Your email to c.morgan@contractor.atomindustries.com could not be delivered. Please update your billing details with AWS immediately to prevent further service interruption.
+    content: `Your email to HR@atomindustries.com could not be delivered. Please update your billing details with AWS immediately to prevent further service interruption.
 
 This is an automated response from AWS.`,
     urgent: true,
     choices: [
       {
         id: "final_response",
-        text: "Dear Father who art in heaven, please have mercy on my poor soul",
+        text: "Dear Father who art in heaven, please have mercy...",
         nextEmailId: "final_automated_response",
         consequence: {
           type: "temperature",
@@ -310,7 +310,7 @@ This is an automated response.`,
     choices: [
       {
         id: "restart",
-        text: "What is that bright light in the distance? Should I walk towards it? The warmth feels so inviting... ",
+        text: "What is that bright light in the distance? Should I walk towards it? The warmth feels so inviting... Granpda? Is that you? ",
         nextEmailId: "start"
       }
     ]
