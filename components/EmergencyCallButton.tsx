@@ -46,7 +46,7 @@ export default function EmergencyCallButton() {
         className="fixed bottom-4 right-4 bg-red-600 hover:bg-red-700 
                    text-white font-bold py-4 px-8 rounded-full 
                    shadow-lg hover:shadow-xl transition-all
-                   animate-pulse"
+                   animate-pulse z-50"
       >
         <span className="mr-2">📞</span>
              Call Jessica

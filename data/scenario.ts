@@ -280,7 +280,7 @@ This is an automated response.`,
     choices: [
       {
         id: "restart",
-        text: "It doesn't seem good, maybe try again",
+        text: "This doesn't seem good, maybe try again 🔁",
         nextEmailId: "start"
       }
     ]

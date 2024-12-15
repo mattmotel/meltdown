@@ -30,11 +30,11 @@ export default function Email({ email, onChoice }: EmailProps) {
         
         <div className="border-b border-gray-200 p-3">
           <div className="space-y-2">
-            <div className="flex items-center">
+            <div className="flex items-start gap-4">
               <span className="w-20 text-gray-600">To:</span>
               <span className="text-black">{email.to}</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-start gap-4">
               <span className="w-20 text-gray-600">Subject:</span>
               <span className="text-black">{email.subject}</span>
             </div>
