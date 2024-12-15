@@ -20,9 +20,6 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
                      !email.content.includes("could not be delivered");
 
   const handleChoice = (choiceId: string) => {
-    // Scroll to top smoothly
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
     if (choiceId === 'restart' && onGameOver) {
       onGameOver();
       setTimeout(() => onChoice(choiceId), 3000);
@@ -55,12 +52,12 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
           </div>
         </div>
         
-        <div className="text-sm p-4 min-h-[200px] bg-gray-50 whitespace-pre-wrap">
+        <div className="text-sm p-4 min-h-[200px] bg-green-100 whitespace-pre-wrap">
           <TypewriterText content={email.content} />
         </div>
 
         <div className="text-sm lg:text-base p-4 bg-gray-50 border-t border-gray-200">
-          <ChoiceList choices={email.choices} onChoice={onChoice} />
+          <ChoiceList choices={email.choices} onChoice={handleChoice} />
         </div>
       </div>
     );
@@ -129,25 +126,7 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
         ${isGameOver ? 'bg-black' : 'bg-gray-50'}
         ${isAWSFailure ? 'bg-red-50' : ''}
       `}>
-        {(email.choices || []).map((choice) => (
-          <button
-            key={choice.id}
-            onClick={() => handleChoice(choice.id)}
-            className={`
-              w-full p-2 text-left rounded shadow-sm text-sm
-              font-sans leading-tight
-              ${isAWSFailure 
-                ? 'bg-red-600 text-white border-red-400 hover:bg-red-700' 
-                : isGameOver
-                  ? 'bg-red-900 text-white border-red-500 hover:bg-red-800'
-                  : 'bg-white text-black border border-gray-300 hover:bg-gray-300'
-              }
-              transition-colors
-            `}
-          >
-            {choice.text}
-          </button>
-        ))}
+        <ChoiceList choices={email.choices} onChoice={handleChoice} />
       </div>
     </div>
   );

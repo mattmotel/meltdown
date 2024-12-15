@@ -155,4 +155,41 @@
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+.holdingAnimation {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.holdingAnimation span {
+  animation: bounce 0.8s infinite;
+}
+
+.holdingAnimation span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.holdingAnimation span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.transferAnimation {
+  display: flex;
+  justify-content: center;
+}
+
+.transferDot {
+  width: 12px;
+  height: 12px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: transfer 1.5s infinite;
+}
+
+@keyframes transfer {
+  0% { transform: translateX(-20px); opacity: 0; }
+  50% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(20px); opacity: 0; }
 } 

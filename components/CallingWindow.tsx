@@ -10,38 +10,42 @@ export interface CallingWindowProps {
 
 const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', ringCount: initialRingCount = 0 }: CallingWindowProps) => {
   const [callDuration, setCallDuration] = useState<number>(0);
-  const [callStatus, setCallStatus] = useState<'ringing' | 'calling' | 'voicemail'>(initialStatus);
+  const [callStatus, setCallStatus] = useState<'ringing' | 'holding' | 'transferring' | 'voicemail'>('ringing');
   const [localRingCount, setLocalRingCount] = useState<number>(initialRingCount);
+  const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const ringInterval = setInterval(() => {
+    // Start hold sequence after 2.5 seconds
+    const holdTimer = setTimeout(() => {
       if (callStatus === 'ringing') {
-        setLocalRingCount((prev: number) => prev + 1);
-      }
-    }, 3000);
+        setCallStatus('holding');
+        // Initialize audio player for hold music
+        const audio = new Audio('/audio/phone-holding-music-163387.mp3');
+        audio.loop = true;
+        audio.play();
+        setAudioPlayer(audio);
 
-    if (localRingCount >= 4 && callStatus === 'ringing') {
-      setCallStatus('calling');
-    }
-
-    const voicemailTimeout = setTimeout(() => {
-      if (callStatus === 'calling') {
-        setCallStatus('voicemail');
+        // After 8 seconds of hold music, transfer
+        setTimeout(() => {
+          setCallStatus('transferring');
+          // After 3 more seconds, go to voicemail
+          setTimeout(() => {
+            audio.pause();
+            setAudioPlayer(null);
+            setCallStatus('voicemail');
+          }, 3000);
+        }, 8000);
       }
-    }, 30000);
-
-    const durationTimer = setInterval(() => {
-      if (callStatus === 'calling') {
-        setCallDuration((prev: number) => prev + 1);
-      }
-    }, 1000);
+    }, 2500); // 2.5 seconds of ringing
 
     return () => {
-      clearInterval(ringInterval);
-      clearTimeout(voicemailTimeout);
-      clearInterval(durationTimer);
+      clearTimeout(holdTimer);
+      if (audioPlayer) {
+        audioPlayer.pause();
+        setAudioPlayer(null);
+      }
     };
-  }, [callStatus, localRingCount]);
+  }, [callStatus]);
 
   const formatDuration = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
@@ -70,18 +74,26 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
               <p>Ringing...</p>
             </>
           )}
-          {callStatus === 'calling' && (
+          {callStatus === 'holding' && (
             <>
-              <div className={styles.callingDots}>
-                <span>.</span><span>.</span><span>.</span>
+              <div className={styles.holdingAnimation}>
+                <span>♪</span><span>♫</span><span>♪</span>
               </div>
-              <p>Calling</p>
+              <p>Please hold. Your call is important to us.</p>
+            </>
+          )}
+          {callStatus === 'transferring' && (
+            <>
+              <div className={styles.transferAnimation}>
+                <div className={styles.transferDot}></div>
+              </div>
+              <p>Transferring to HR department...</p>
             </>
           )}
           {callStatus === 'voicemail' && (
             <>
               <div className={styles.voicemailIcon}>📝</div>
-              <p>Please leave a message</p>
+              <p>Please leave a message after the tone.</p>
             </>
           )}
         </div>
@@ -103,4 +115,4 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
   );
 };
 
-export default CallingWindow; 
+export default CallingWindow;
