@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import CallingWindow from './CallingWindow';
 
-interface CallButtonProps {}
-
-const CallButton: React.FC<CallButtonProps> = () => {
+const CallButton: React.FC = () => {
   const [isCallActive, setIsCallActive] = useState(false);
 
   const handleCall = (e: React.MouseEvent<HTMLButtonElement>) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CallingWindow from './CallingWindow';
 
-export default function EmergencyCallButton() {
+const EmergencyCallButton: React.FC = () => {
   const [showCallWindow, setShowCallWindow] = useState(false);
   const [ringCount, setRingCount] = useState(0);
   const [callStatus, setCallStatus] = useState<'ringing' | 'voicemail'>('ringing');
@@ -57,4 +57,6 @@ export default function EmergencyCallButton() {
       </button>
     </>
   );
-} 
+};
+
+export default EmergencyCallButton; 
