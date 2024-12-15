@@ -13,7 +13,7 @@ const CallButton = () => {
   return (
     <>
       <button onClick={handleCall}>
-        Call Casey
+        Call Jessica
       </button>
 
       {isCallActive && (

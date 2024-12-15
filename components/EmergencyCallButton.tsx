@@ -49,7 +49,7 @@ export default function EmergencyCallButton() {
                    animate-pulse"
       >
         <span className="mr-2">📞</span>
-        Call Casey
+             Call Jessica
       </button>
     </>
   );
