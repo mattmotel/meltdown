@@ -8,10 +8,8 @@ export interface CallingWindowProps {
   ringCount?: number;
 }
 
-const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', ringCount: initialRingCount = 0 }: CallingWindowProps) => {
-  const [callDuration, setCallDuration] = useState<number>(0);
+const CallingWindow = ({ callee, onClose }: CallingWindowProps) => {
   const [callStatus, setCallStatus] = useState<'ringing' | 'holding' | 'transferring' | 'voicemail'>('ringing');
-  const [localRingCount, setLocalRingCount] = useState<number>(initialRingCount);
   const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -30,7 +28,9 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
           setCallStatus('transferring');
           // After 3 more seconds, go to voicemail
           setTimeout(() => {
-            audio.pause();
+            if (audioPlayer) {
+              audioPlayer.pause();
+            }
             setAudioPlayer(null);
             setCallStatus('voicemail');
           }, 3000);
@@ -45,7 +45,7 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
         setAudioPlayer(null);
       }
     };
-  }, [callStatus]);
+  }, [callStatus, audioPlayer]);
 
   return (
     <div className={styles.callingWindow}>
