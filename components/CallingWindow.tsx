@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './CallingWindow.module.css';
 
 export interface CallingWindowProps {
@@ -8,10 +8,9 @@ export interface CallingWindowProps {
   ringCount?: number;
 }
 
-const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose }) => {
+const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose, status, ringCount }) => {
   const [callDuration, setCallDuration] = useState(0);
   const [callStatus, setCallStatus] = useState('ringing'); // ringing, calling, voicemail, ended
-  const [ringCount, setRingCount] = useState(0);
 
   useEffect(() => {
     const ringInterval = setInterval(() => {

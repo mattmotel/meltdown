@@ -6,7 +6,7 @@ import Email from './Email';
 import type { EmailProps } from './Email';
 
 interface TerminalProps {
-  children: React.ReactNode;
+  children: React.ReactNode[];
   status: SystemStatus;
 }
 
