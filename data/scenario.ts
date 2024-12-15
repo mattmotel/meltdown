@@ -258,7 +258,7 @@ Albert Sampson / HR Consultant`,
     choices: [
       {
         id: "aws_failure",
-        text: "Run!",
+        text: "Maybe they'll come to their senses",
         nextEmailId: "aws_failure_notice",
         consequence: {
           type: "containment",

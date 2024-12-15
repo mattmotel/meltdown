@@ -36,7 +36,7 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
           }, 3000);
         }, 8000);
       }
-    }, 2500); // 2.5 seconds of ringing
+    }, 2500);
 
     return () => {
       clearTimeout(holdTimer);
@@ -46,12 +46,6 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
       }
     };
   }, [callStatus]);
-
-  const formatDuration = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
 
   return (
     <div className={styles.callingWindow}>
@@ -97,10 +91,6 @@ const CallingWindow = ({ callee, onClose, status: initialStatus = 'ringing', rin
             </>
           )}
         </div>
-
-        {callStatus === 'calling' && (
-          <div className={styles.duration}>{formatDuration(callDuration)}</div>
-        )}
 
         <div className={styles.controls}>
           <button 
