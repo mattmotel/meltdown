@@ -29,6 +29,11 @@ Casey Morgan // Contractor`,
           type: "temperature",
           value: 35
         }
+      },
+      {
+        id: "email_boss",
+        text: "Email plant manager directly",
+        nextEmailId: "boss_response"
       }
     ]
   },
@@ -56,6 +61,11 @@ Jessica Bronson / HR Consultant`,
         id: "urgent_reply",
         text: "Wait for HR response",
         nextEmailId: "casey_urgent_reply"
+      },
+      {
+        id: "try_it_department",
+        text: "Contact IT department",
+        nextEmailId: "it_response"
       }
     ]
   },
@@ -282,6 +292,51 @@ This is an automated response.`,
         id: "restart",
         text: "This doesn't seem good, maybe try again 🔁",
         nextEmailId: "start"
+      }
+    ]
+  },
+
+  "boss_response": {
+    id: "boss_response",
+    from: "m.johnson@atomindustries.com",
+    to: "c.morgan@contractor.atomindustries.com",
+    subject: "Re: Former Employee Holds Key to Prevent AWS Shutdown and Potential Nuclear Meltdown",
+    timestamp: "10:00 AM",
+    content: `Casey,
+
+Thank you for bringing this to my attention. However, I'm not familiar with the AWS systems or this Ethan person. Have you tried reaching out to Jessica in HR? She's our consultant handling all personnel matters.
+
+Please coordinate with HR on this.
+
+Regards,
+Mark Johnson
+Plant Manager`,
+    choices: [
+      {
+        id: "back_to_hr",
+        text: "Contact HR as suggested",
+        nextEmailId: "hr_first_response"
+      }
+    ]
+  },
+
+  "it_response": {
+    id: "it_response",
+    from: "it.support@atomindustries.com",
+    to: "c.morgan@contractor.atomindustries.com",
+    subject: "Re: AWS Access Request",
+    timestamp: "11:15 AM",
+    content: `Hi Casey,
+
+All AWS account management is handled through HR. Please submit your request through the proper channels by contacting Jessica Bronson in HR.
+
+Best regards,
+IT Support`,
+    choices: [
+      {
+        id: "back_to_hr_again",
+        text: "Return to HR process",
+        nextEmailId: "casey_urgent_reply"
       }
     ]
   }
