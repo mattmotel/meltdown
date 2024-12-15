@@ -50,7 +50,7 @@ const EmergencyCallButton: React.FC = () => {
                    text-sm md:text-base 
                    rounded-full 
                    shadow-lg hover:shadow-xl transition-all
-                   animate-pulse z-50"
+                   animate-[pulse_5s_ease-in-out_infinite] z-50"
       >
         <span className="mr-2">📞</span>
         Call Jessica
