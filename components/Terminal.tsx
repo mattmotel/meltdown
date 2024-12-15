@@ -21,6 +21,50 @@ export default function Terminal({ children, status }: TerminalProps) {
     }
   }, [status]);
 
+  useEffect(() => {
+    const updateTitle = () => {
+      if (status.temperature >= 80) {
+        // More dramatic messages for critical state
+        const criticalMessages = [
+          "🚨 CRITICAL: AWS SHUTDOWN IMMINENT 🚨",
+          "⚠️ $4.99 UNPAID - EVACUATE NOW ⚠️",
+          "🔥 MELTDOWN SEQUENCE INITIATED 🔥",
+          "💀 NO EXPENSE APPROVAL - DOOM 💀"
+        ];
+        let messageIndex = 0;
+        
+        const flashTitle = () => {
+          document.title = criticalMessages[messageIndex];
+          messageIndex = (messageIndex + 1) % criticalMessages.length;
+        };
+
+        const titleInterval = setInterval(flashTitle, 800);
+        return () => clearInterval(titleInterval);
+      } else if (status.temperature > 45) {
+        // Warning state messages
+        const warningMessages = [
+          "⚠️ WARNING: AWS Shutdown Risk",
+          "⏰ Time Running Out",
+          "📝 HR Approval Pending..."
+        ];
+        let messageIndex = 0;
+
+        const flashTitle = () => {
+          document.title = warningMessages[messageIndex];
+          messageIndex = (messageIndex + 1) % warningMessages.length;
+        };
+
+        const titleInterval = setInterval(flashTitle, 2000);
+        return () => clearInterval(titleInterval);
+      } else {
+        document.title = "Prevent AWS Shutdown";
+      }
+    };
+
+    const cleanup = updateTitle();
+    return () => cleanup?.();
+  }, [status.temperature]);
+
   const handleGameOver = () => {
     setIsFlashing(true);
     setTimeout(() => {

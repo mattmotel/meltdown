@@ -15,11 +15,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Prevent AWS Shutdown",
   description: "A corporate horror story about a $4.99 AWS bill",
+  manifest: '/manifest.json',
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png"
   },
-  themeColor: "#000000"
+  themeColor: "#000000",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'AWS Shutdown'
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1
+  }
 };
 
 export default function RootLayout({
