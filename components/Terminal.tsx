@@ -11,6 +11,7 @@ interface TerminalProps {
 export default function Terminal({ children, status }: TerminalProps) {
   const [key, setKey] = useState(0);
   const isCritical = status.level === 'critical' || !status.containment;
+  const isEmergency = status.temperature >= 80;
   
   useEffect(() => {
     if (status.level === 'normal' && status.temperature === 25) {
@@ -24,9 +25,18 @@ export default function Terminal({ children, status }: TerminalProps) {
       className={`
         min-h-screen bg-black text-green-500 p-4 font-mono
         ${isCritical ? 'animate-glitch' : ''}
+        ${isEmergency ? 'border-4 border-red-600 animate-pulse' : ''}
         relative
       `}
     >
+      {/* Emergency overlay */}
+      {isEmergency && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-red-900/20 animate-pulse" />
+          <div className="absolute inset-0 bg-[url('/emergency.png')] opacity-20" />
+        </div>
+      )}
+      
       {/* Glitch overlay */}
       {isCritical && (
         <div className="absolute inset-0 pointer-events-none">
