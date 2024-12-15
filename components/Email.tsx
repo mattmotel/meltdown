@@ -14,7 +14,45 @@ export default function Email({ email, onChoice }: EmailProps) {
   const isGameOver = email.id === 'system_failure' || email.id === 'meltdown_ending';
   const isAWSFailure = email.content.includes("could not be delivered") && 
                        email.content.includes("AWS");
+  const isComposing = email.from.includes("c.morgan") || email.from.includes("Casey");
 
+  if (isComposing) {
+    // Outlook composing email style
+    return (
+      <div className={`
+        bg-white text-black rounded-lg shadow-lg overflow-hidden
+        ${email.urgent ? 'border-l-4 border-red-500' : ''}
+      `}>
+        <div className="bg-[#0F6CBD] text-white p-3">
+          <h2 className="text-xl font-semibold">New Message</h2>
+        </div>
+        
+        <div className="border-b border-gray-200 p-3">
+          <div className="space-y-2">
+            <div className="flex items-center">
+              <span className="w-20 text-gray-600">To:</span>
+              <span className="text-black">{email.to}</span>
+            </div>
+            <div className="flex items-center">
+              <span className="w-20 text-gray-600">Subject:</span>
+              <span className="text-black">{email.subject}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="p-4 min-h-[200px] whitespace-pre-wrap relative">
+          {email.content}
+          <span className="inline-block w-0.5 h-5 bg-black ml-1 animate-[blink_1s_infinite]" />
+        </div>
+
+        <div className="p-4 bg-gray-50 border-t border-gray-200">
+          <ChoiceList choices={email.choices} onChoice={onChoice} />
+        </div>
+      </div>
+    );
+  }
+
+  // Regular received email style (your existing style)
   return (
     <div className={`
       bg-white text-black rounded-lg shadow-lg overflow-hidden
