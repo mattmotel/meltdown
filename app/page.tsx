@@ -29,10 +29,12 @@ export default function Home() {
       if (choice.nextEmailId === 'start') {
         setSystemStatus(initialStatus);
       } else if (choice.consequence) {
+        const consequenceValue = typeof choice.consequence.value === 'number' ? choice.consequence.value : 0;
+        
         setSystemStatus(prev => ({
           ...prev,
-          [choice.consequence.type]: choice.consequence.value,
-          level: choice.consequence.type === 'temperature' && choice.consequence.value > 40 
+          [choice.consequence!.type]: choice.consequence!.value,
+          level: choice.consequence!.type === 'temperature' && consequenceValue > 40 
             ? 'danger' 
             : prev.level
         }));

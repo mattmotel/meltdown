@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { SystemStatus } from '@/types';
 import Email from './Email';
+import type { EmailProps } from './Email';
 
 interface TerminalProps {
   children: React.ReactNode;
@@ -114,8 +115,11 @@ export default function Terminal({ children, status }: TerminalProps) {
       
       <div className="max-w-2xl mx-auto relative z-10">
         {React.Children.map(children, child => {
-          if (React.isValidElement(child) && child.type === Email) {
-            return React.cloneElement(child, { onGameOver: handleGameOver });
+          if (React.isValidElement<EmailProps>(child) && child.type === Email) {
+            return React.cloneElement(child, {
+              ...child.props,
+              onGameOver: handleGameOver
+            } as EmailProps);
           }
           return child;
         })}

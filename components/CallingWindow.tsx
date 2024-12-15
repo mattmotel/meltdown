@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CallingWindow.module.css';
 
-interface CallingWindowProps {
+export interface CallingWindowProps {
   callee: string;
   onClose: () => void;
+  status?: 'ringing' | 'voicemail';
+  ringCount?: number;
 }
 
 const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose }) => {
@@ -41,7 +43,7 @@ const CallingWindow: React.FC<CallingWindowProps> = ({ callee, onClose }) => {
     };
   }, [callStatus, ringCount]);
 
-  const formatDuration = (seconds) => {
+  const formatDuration = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;

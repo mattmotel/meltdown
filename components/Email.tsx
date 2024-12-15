@@ -1,7 +1,7 @@
 import { Email as EmailType } from '@/types';
 import ChoiceList from './ChoiceList';
 
-interface EmailProps {
+export interface EmailProps {
   email: EmailType;
   onChoice: (choiceId: string) => void;
   onGameOver?: () => void;
