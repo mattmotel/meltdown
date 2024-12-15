@@ -43,8 +43,12 @@ export default function EmergencyCallButton() {
       
       <button
         onClick={() => setShowCallWindow(true)}
-        className="fixed bottom-4 right-4 bg-red-600 hover:bg-red-700 
-                   text-white font-bold py-4 px-8 rounded-full 
+        className="fixed bottom-2 md:bottom-4 right-2 md:right-4 
+                   bg-red-600 hover:bg-red-700 
+                   text-white font-bold 
+                   py-2 md:py-4 px-4 md:px-8 
+                   text-sm md:text-base 
+                   rounded-full 
                    shadow-lg hover:shadow-xl transition-all
                    animate-pulse z-50"
       >

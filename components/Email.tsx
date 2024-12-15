@@ -114,7 +114,7 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
       </div>
       
       <div className={`
-        p-4 font-sans whitespace-pre-wrap
+        p-4 font-sans whitespace-pre-wrap text-base md:text-sm
         ${isGameOver ? 'bg-black text-red-500' : ''}
         ${isAWSFailure ? 'bg-red-50 text-red-600 font-bold animate-pulse' : ''}
       `}>
@@ -131,7 +131,7 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
             key={choice.id}
             onClick={() => handleChoice(choice.id)}
             className={`
-              w-full p-3 text-left rounded shadow-sm
+              w-full p-2 md:p-3 text-left rounded shadow-sm text-sm md:text-base
               ${isAWSFailure 
                 ? 'bg-red-600 text-white border-red-400 hover:bg-red-700' 
                 : isGameOver

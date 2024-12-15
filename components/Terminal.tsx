@@ -113,7 +113,7 @@ export default function Terminal({ children, status }: TerminalProps) {
         />
       )}
       
-      <div className="max-w-2xl mx-auto relative z-10">
+      <div className="max-w-2xl mx-auto relative z-10 p-2 md:p-4">
         {React.Children.map(children, child => {
           if (React.isValidElement<EmailProps>(child) && child.type === Email) {
             return React.cloneElement(child, {
