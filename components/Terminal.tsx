@@ -8,9 +8,10 @@ import type { EmailProps } from './Email';
 interface TerminalProps {
   children: React.ReactNode[];
   status: SystemStatus;
+  onGameOver: () => void;
 }
 
-export default function Terminal({ children, status }: TerminalProps) {
+export default function Terminal({ children, status, onGameOver }: TerminalProps) {
   const [key, setKey] = useState(0);
   const [isFlashing, setIsFlashing] = useState(false);
   const isCritical = status.level === 'critical' || !status.containment;
@@ -68,6 +69,7 @@ export default function Terminal({ children, status }: TerminalProps) {
 
   const handleGameOver = () => {
     setIsFlashing(true);
+    onGameOver();
     setTimeout(() => {
       setIsFlashing(false);
       setKey(prev => prev + 1);
@@ -106,10 +108,10 @@ export default function Terminal({ children, status }: TerminalProps) {
         <div className="absolute inset-0 bg-white/5 animate-flicker pointer-events-none" />
       )}
       
-      {/* White flash overlay */}
+      {/* White flash overlay - increased z-index to 100 */}
       {isFlashing && (
         <div 
-          className="absolute inset-0 bg-white pointer-events-none animate-fadeIn z-50"
+          className="fixed inset-0 bg-white pointer-events-none animate-fadeIn z-[100]"
         />
       )}
       

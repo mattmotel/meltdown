@@ -18,6 +18,7 @@ const initialStatus = {
 export default function Home() {
   const [currentEmailId, setCurrentEmailId] = useState('start');
   const [systemStatus, setSystemStatus] = useState<SystemStatusType>(initialStatus);
+  const [isFlashing, setIsFlashing] = useState(false);
 
   const handleChoice = (choiceId: string) => {
     console.log('Choice clicked:', choiceId);
@@ -44,18 +45,25 @@ export default function Home() {
     }
   };
 
+  const handleGameOver = () => {
+    setIsFlashing(true);
+  };
+
   console.log('Current email:', currentEmailId);
 
   return (
     <main className="relative min-h-screen">
-      <Terminal status={systemStatus}>
+      <Terminal 
+        status={systemStatus} 
+        onGameOver={handleGameOver}
+      >
         <SystemStatus status={systemStatus} />
         <Email 
           email={scenario[currentEmailId]} 
           onChoice={handleChoice}
         />
       </Terminal>
-      <EmergencyCallButton />
+      {!isFlashing && <EmergencyCallButton />}
     </main>
   );
 }
