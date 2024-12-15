@@ -14,13 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Prevent AWS Shutdown",
-  description: "A corporate horror story about a $4.99 AWS bill",
+  description: "URGENT: Your AWS account will be suspended in 24 hours due to unpaid balance of $4.99",
   manifest: '/manifest.json',
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', type: 'image/x-icon' }
-    ],
+    icon: '/favicon.ico',
     apple: '/apple-touch-icon.png'
   },
   themeColor: "#000000",
@@ -43,10 +40,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
