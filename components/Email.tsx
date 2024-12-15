@@ -44,12 +44,12 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
         <div className="border-b border-gray-200 p-2 md:p-3">
           <div className="space-y-1 md:space-y-2 text-sm md:text-base">
             <div className="flex items-start gap-2 md:gap-4">
-              <span className="w-12 md:w-20 text-gray-600">To:</span>
+              <span className="shrink-0 w-12 md:w-20 text-gray-600">To:</span>
               <span className="text-black flex-1 break-all">{email.to}</span>
             </div>
             <div className="flex items-start gap-2 md:gap-4">
-              <span className="w-12 md:w-20 text-gray-600">Subject:</span>
-              <span className="text-black flex-1 break-words">{email.subject}</span>
+              <span className="shrink-0 w-12 md:w-20 text-gray-600">Subject:</span>
+              <span className="text-black flex-1 break-words leading-tight">{email.subject}</span>
             </div>
           </div>
         </div>
@@ -79,10 +79,10 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
         ${isAWSFailure ? 'bg-red-700 animate-pulse' : ''}
         text-white p-2 md:p-3
       `}>
-        <h2 className="text-sm md:text-xl font-semibold flex items-center leading-tight">
-          {isAWSFailure && <span className="animate-pulse mr-1 md:mr-2">⚠️</span>}
-          {email.subject || 'No Subject'}
-          {isAWSFailure && <span className="animate-pulse ml-1 md:ml-2">⚠️</span>}
+        <h2 className="text-sm md:text-xl font-semibold flex items-center leading-tight break-words">
+          {isAWSFailure && <span className="shrink-0 animate-pulse mr-1 md:mr-2">⚠️</span>}
+          <span className="flex-1">{email.subject || 'No Subject'}</span>
+          {isAWSFailure && <span className="shrink-0 animate-pulse ml-1 md:ml-2">⚠️</span>}
         </h2>
       </div>
       

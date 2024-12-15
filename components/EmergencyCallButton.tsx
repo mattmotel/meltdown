@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CallingWindow, { CallingWindowProps } from './CallingWindow';
+import CallingWindow from './CallingWindow';
 
 export default function EmergencyCallButton() {
   const [showCallWindow, setShowCallWindow] = useState(false);
