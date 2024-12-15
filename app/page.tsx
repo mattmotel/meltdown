@@ -29,6 +29,7 @@ export default function Home() {
       // If it's a restart, reset everything
       if (choice.nextEmailId === 'start') {
         setSystemStatus(initialStatus);
+        setIsFlashing(false);
       } else if (choice.consequence) {
         const consequenceValue = typeof choice.consequence.value === 'number' ? choice.consequence.value : 0;
         

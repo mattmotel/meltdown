@@ -437,7 +437,7 @@ AWS Billing Team`,
     choices: [
       {
         id: "run_faster",
-        text: "RUN FASTER!",
+        text: "RUN!",
         nextEmailId: "aws_failure_notice",
         consequence: {
           type: "temperature",
