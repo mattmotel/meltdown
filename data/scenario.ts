@@ -144,7 +144,7 @@ HR Consultant`,
     subject: "Re: Former Employee Holds Key to Prevent AWS Shutdown and Potential Nuclear Meltdown",
     content: `Casey,
 
-I would like to update you on the progress we've made regarding the critical situation at hand. As you know, following the acquisition of Atom Industries by Bane Capital, we have been in the process of migrating employee records. Unfortunately, it appears that some of these records have been lost in the transition.
+I would like to update you on the progress we've made regarding the critical situation at hand. As you know, following the acquisition of Atom Industries by Oblivion Strategies, we have been in the process of migrating employee records. Unfortunately, it appears that some of these records have been lost in the transition.
 
 We are in touch with the Data Recovery team to further handle this matter.
 
