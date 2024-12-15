@@ -14,8 +14,8 @@ export default {
       },
       keyframes: {
         blink: {
-          '0%, 100%': { opacity: '0' },
-          '50%': { opacity: '1' }
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' }
         },
         flash: {
           '0%': { backgroundColor: 'black' },
@@ -32,7 +32,8 @@ export default {
       },
       animation: {
         flash: 'flash 3s forwards',
-        fadeIn: 'fadeIn 5s ease-in forwards'
+        fadeIn: 'fadeIn 5s ease-in forwards',
+        blink: 'blink 1s steps(1) infinite'
       }
     },
   },

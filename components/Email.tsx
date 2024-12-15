@@ -54,9 +54,12 @@ export default function Email({ email, onChoice, onGameOver }: EmailProps) {
           </div>
         </div>
         
-        <div className="text-sm p-4 min-h-[200px] bg-gray-50 whitespace-pre-wrap relative">
+        <div className="text-sm p-4 min-h-[200px] bg-gray-50 whitespace-pre-wrap">
           {email.content}
-          <span className="inline-block w-0.5 h-5 bg-black ml-1 animate-[blink_1s_infinite]" />
+          <span 
+            className="inline-block w-[2px] h-4 bg-black ml-1" 
+            style={{ animation: 'cursor-blink 1s step-end infinite' }}
+          />
         </div>
 
         <div className="text-sm lg:text-base p-4 bg-gray-50 border-t border-gray-200">
