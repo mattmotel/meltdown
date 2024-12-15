@@ -23,7 +23,7 @@ Casey Morgan // Contractor`,
     choices: [
       {
         id: "hr_response",
-        text: "Process HR response",
+        text: "Send email to HR",
         nextEmailId: "hr_first_response",
         consequence: {
           type: "temperature",
@@ -54,7 +54,7 @@ Jessica Bronson / HR Consultant`,
     choices: [
       {
         id: "urgent_reply",
-        text: "Receive urgent reply from Casey",
+        text: "Wait for HR response",
         nextEmailId: "casey_urgent_reply"
       }
     ]
@@ -78,7 +78,7 @@ Casey`,
     choices: [
       {
         id: "no_records",
-        text: "Send records search results",
+        text: "Send email to HR",
         nextEmailId: "records_not_found",
         consequence: {
           type: "temperature",
@@ -106,7 +106,7 @@ HR Consultant`,
     choices: [
       {
         id: "albert_update",
-        text: "Receive update from Albert",
+        text: "Wait for email",
         nextEmailId: "albert_migration_update",
         consequence: {
           type: "temperature",
@@ -133,7 +133,7 @@ Albert Sampson / HR Consultant`,
     choices: [
       {
         id: "urgent_hours",
-        text: "Send urgent hours warning",
+        text: "Write urgent warning",
         nextEmailId: "mere_hours_warning"
       }
     ]
@@ -154,7 +154,7 @@ Casey`,
     choices: [
       {
         id: "policy_response",
-        text: "Send policy response",
+        text: "Send response",
         nextEmailId: "written_policy_response",
         consequence: {
           type: "temperature",
@@ -181,7 +181,7 @@ Albert Sampson / HR Consultant`,
     choices: [
       {
         id: "password_found",
-        text: "Send password recovery update",
+        text: "Write response",
         nextEmailId: "password_recovery",
         consequence: {
           type: "pressure",
@@ -206,7 +206,7 @@ Casey`,
     choices: [
       {
         id: "expense_approval",
-        text: "Send expense approval response",
+        text: "Send expense for approval",
         nextEmailId: "expense_response",
         consequence: {
           type: "temperature",
@@ -233,7 +233,7 @@ Albert Sampson / HR Consultant`,
     choices: [
       {
         id: "aws_failure",
-        text: "Receive AWS failure notice",
+        text: "Run!",
         nextEmailId: "aws_failure_notice",
         consequence: {
           type: "containment",
@@ -256,7 +256,7 @@ This is an automated response from AWS.`,
     choices: [
       {
         id: "final_response",
-        text: "Receive final automated response",
+        text: "Hide",
         nextEmailId: "final_automated_response",
         consequence: {
           type: "temperature",
@@ -280,7 +280,7 @@ This is an automated response.`,
     choices: [
       {
         id: "restart",
-        text: "Restart from beginning",
+        text: "It doesn't seem good, maybe try again",
         nextEmailId: "start"
       }
     ]

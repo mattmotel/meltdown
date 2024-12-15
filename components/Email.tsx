@@ -122,12 +122,12 @@ export default function Email({ email, onChoice }: EmailProps) {
             onClick={() => onChoice(choice.id)}
             className={`
               w-full p-3 text-left rounded shadow-sm
-              ${isGameOver 
-                ? 'bg-red-900 text-white border-red-500 hover:bg-red-800' 
-              : 'bg-white text-black border border-gray-300 hover:bg-gray-300'}
               ${isAWSFailure 
                 ? 'bg-red-600 text-white border-red-400 hover:bg-red-700' 
-                : ''}
+                : isGameOver
+                  ? 'bg-red-900 text-white border-red-500 hover:bg-red-800'
+                  : 'bg-white text-black border border-gray-300 hover:bg-gray-300'
+              }
               transition-colors
             `}
           >
