@@ -34,7 +34,7 @@ export default function EmergencyCallButton() {
     <>
       {showCallWindow && (
         <CallingWindow 
-          callee="Casey"
+          callee="Jessica"
           onClose={() => setShowCallWindow(false)}
           status={callStatus}
           ringCount={ringCount}
@@ -49,7 +49,7 @@ export default function EmergencyCallButton() {
                    animate-pulse z-50"
       >
         <span className="mr-2">📞</span>
-             Call Jessica
+        Call Jessica
       </button>
     </>
   );

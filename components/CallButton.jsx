@@ -18,7 +18,7 @@ const CallButton = () => {
 
       {isCallActive && (
         <CallingWindow 
-          callee="Casey"
+          callee="Jessica"
           onClose={() => setIsCallActive(false)}
         />
       )}
