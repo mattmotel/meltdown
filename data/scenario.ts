@@ -264,6 +264,11 @@ Albert Sampson / HR Consultant`,
           type: "containment",
           value: false
         }
+      },
+      {
+        id: "try_own_card",
+        text: "Try using your personal credit card",
+        nextEmailId: "credit_card_declined"
       }
     ]
   },
@@ -281,7 +286,7 @@ This is an automated response from AWS.`,
     choices: [
       {
         id: "final_response",
-        text: "Hide",
+        text: "Dear Father who art in heaven, please have mercy on my poor soul",
         nextEmailId: "final_automated_response",
         consequence: {
           type: "temperature",
@@ -305,7 +310,7 @@ This is an automated response.`,
     choices: [
       {
         id: "restart",
-        text: "This doesn't seem good, maybe try again 🔁",
+        text: "What is that bright light in the distance? Should I walk towards it? The warmth feels so inviting... ",
         nextEmailId: "start"
       }
     ]
@@ -412,6 +417,32 @@ AWS Support Team`,
         id: "back_to_hr_aws",
         text: "Return to HR process",
         nextEmailId: "mere_hours_warning"
+      }
+    ]
+  },
+
+  "credit_card_declined": {
+    id: "credit_card_declined",
+    from: "no-reply@aws.amazon.com",
+    to: "c.morgan@contractor.atomindustries.com",
+    subject: "Payment Declined - AWS Account",
+    timestamp: "4:40 PM",
+    content: `Payment Authorization Failed
+
+We were unable to process your payment. The billing address provided does not match the address on file for this AWS account.
+
+For security reasons, the billing address must match the original account holder's address. Please contact your organization's HR department to update billing information.
+
+AWS Billing Team`,
+    choices: [
+      {
+        id: "run_faster",
+        text: "RUN FASTER!",
+        nextEmailId: "aws_failure_notice",
+        consequence: {
+          type: "temperature",
+          value: 95
+        }
       }
     ]
   }
