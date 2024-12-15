@@ -17,8 +17,11 @@ export const metadata: Metadata = {
   description: "A corporate horror story about a $4.99 AWS bill",
   manifest: '/manifest.json',
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png"
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', type: 'image/x-icon' }
+    ],
+    apple: '/apple-touch-icon.png'
   },
   themeColor: "#000000",
   appleWebApp: {
